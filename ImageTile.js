@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { goToImage } from '../actions'
+import { goToImage } from './actions'
 
 class ImageTile extends Component {
   render() {

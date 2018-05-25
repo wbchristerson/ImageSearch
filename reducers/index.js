@@ -1,7 +1,7 @@
 import { GO_TO_IMAGE } from '../actions'
 
 const initialState = {
-  imageId = -1,
+  imageId: -1,
 }
 
 function screenResult (state = initialState, action) {
