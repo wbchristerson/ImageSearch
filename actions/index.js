@@ -1,4 +1,5 @@
 export const GO_TO_IMAGE = 'GO_TO_IMAGE'
+export const GET_IMAGE_LIST = 'GET_IMAGE_LIST'
 
 export function goToImage(clickedImage) {
   return {
@@ -6,3 +7,16 @@ export function goToImage(clickedImage) {
     clickedImage,
   }
 }
+
+export function getImageList(data) {
+  return {
+    type: GET_IMAGE_LIST,
+    data,
+  }
+}
+
+export const getResults = (query) => dispatch => (
+  fetch(`https://pixabay.com/api/?key=9114112-442af9a3d14656a357dba0fe7&q=yellow+flowers&image_type=photo`)
+  .then(data => data.json())
+  .then(data => dispatch(getImageList(data)))
+);
