@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import { Text, TextInput, KeyboardAvoidingView, TouchableOpacity } from 'react-native';
+import { Text, TextInput, KeyboardAvoidingView, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
-import { goToImage, getResults } from '../actions'
+import { goToImage, getResults, showResults } from '../actions'
 
 class SearchField extends Component {
   state = {
@@ -16,7 +16,9 @@ class SearchField extends Component {
 
   submit = () => {
     console.log('Hello\n\n')
+    console.log('Representation: ', encodeURIComponent('yellow flowers'))
     this.props.dispatch(getResults('yellow flowers'))
+    this.props.dispatch(showResults(true))
   }
 
   render() {

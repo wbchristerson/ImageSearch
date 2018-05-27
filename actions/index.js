@@ -1,5 +1,6 @@
 export const GO_TO_IMAGE = 'GO_TO_IMAGE'
 export const GET_IMAGE_LIST = 'GET_IMAGE_LIST'
+export const SHOW_RESULTS = 'SHOW_RESULTS'
 
 export function goToImage(clickedImage) {
   return {
@@ -12,6 +13,13 @@ export function getImageList(data) {
   return {
     type: GET_IMAGE_LIST,
     data,
+  }
+}
+
+export function showResults(status) {
+  return {
+    type: SHOW_RESULTS,
+    status,
   }
 }
 

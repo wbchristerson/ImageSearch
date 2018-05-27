@@ -5,7 +5,10 @@ import { goToImage } from './actions'
 class ImageTile extends Component {
   render() {
     return(
-      <Text>This is a test.</Text>
+      <View>
+        <Image source={{uri: this.props.source}}
+          style={{width: 150, height: 150}}/>
+      </View>
     )
   }
 }
