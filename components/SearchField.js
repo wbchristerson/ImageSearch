@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Text, TextInput, KeyboardAvoidingView, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
-import { goToImage, getResults, showResults } from '../actions'
+import { goToImage, getResults, showResults, setQuery } from '../actions'
 
 class SearchField extends Component {
   state = {
@@ -15,10 +15,12 @@ class SearchField extends Component {
   }
 
   submit = () => {
-    console.log('Hello\n\n')
     console.log('Representation: ', encodeURIComponent('yellow flowers'))
+    const query = encodeURIComponent(this.state.input)
+    this.props.dispatch(setQuery(this.state.input))
     this.props.dispatch(showResults(true))
-    this.props.dispatch(getResults('yellow flowers'))
+    this.props.dispatch(getResults(query))
+    // this.props.dispatch(getResults('yellow flowers'))
   }
 
   render() {
@@ -29,7 +31,7 @@ class SearchField extends Component {
         <TextInput
           value={input}
           onChangeText={this.handleTextChange}
-          placeholder='Deck Title'
+          placeholder='Search Term'
           placeholderTextColor='#3E5982'/>
         <TouchableOpacity onPress={this.submit}>
           <Text>SUBMIT</Text>

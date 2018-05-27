@@ -1,10 +1,11 @@
-import { GO_TO_IMAGE, GET_IMAGE_LIST, SHOW_RESULTS } from '../actions'
+import { GO_TO_IMAGE, GET_IMAGE_LIST, SHOW_RESULTS, SET_QUERY } from '../actions'
 import { scrapeData } from '../utils/helper'
 
 const initialState = {
   imageId: -1,
   showingResults: false,
   resultList: [],
+  currentQuery: '',
 }
 
 function screenResult (state = initialState, action) {
@@ -31,6 +32,11 @@ function screenResult (state = initialState, action) {
       return {
         ...state,
         showingResults: action.status
+      }
+    case SET_QUERY:
+      return {
+        ...state,
+        currentQuery: action.query,
       }
     default:
       return state

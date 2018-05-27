@@ -7,7 +7,6 @@ class ImageTile extends Component {
   render() {
     return(
       <View>
-        <Text>{this.props.width}</Text>
         <Image source={{uri: this.props.source}}
           style={{width: this.props.width, height: this.props.height}}/>
       </View>
