@@ -15,10 +15,13 @@ function screenResult (state = initialState, action) {
         ...action.clickedImage,
       }
     case GET_IMAGE_LIST:
-      console.log(action.data)
+      console.log('Action Data: ', action.data)
       newResultList = []
-      for (let obj in action.data.hits) {
-        newResultList.push(scrapeData(obj))
+      console.log('Action Data Hits: ', action.data.hits)
+      for (let i = 0; i < action.data.hits.length; i++) {
+        newResultList.push(scrapeData(action.data.hits[i]))
+        console.log("Object: ", action.data.hits[i])
+        console.log(scrapeData(action.data.hits[i]))
       }
       return {
         ...state,
