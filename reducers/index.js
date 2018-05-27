@@ -1,8 +1,10 @@
 import { GO_TO_IMAGE, GET_IMAGE_LIST, SHOW_RESULTS } from '../actions'
+import { scrapeData } from '../utils/helper'
 
 const initialState = {
   imageId: -1,
   showingResults: false,
+  resultList: [],
 }
 
 function screenResult (state = initialState, action) {
@@ -14,8 +16,13 @@ function screenResult (state = initialState, action) {
       }
     case GET_IMAGE_LIST:
       console.log(action.data)
+      newResultList = []
+      for (let obj in action.data.hits) {
+        newResultList.push(scrapeData(obj))
+      }
       return {
         ...state,
+        resultList: newResultList,
       }
     case SHOW_RESULTS:
       return {

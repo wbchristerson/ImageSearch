@@ -17,8 +17,8 @@ class SearchField extends Component {
   submit = () => {
     console.log('Hello\n\n')
     console.log('Representation: ', encodeURIComponent('yellow flowers'))
-    this.props.dispatch(getResults('yellow flowers'))
     this.props.dispatch(showResults(true))
+    this.props.dispatch(getResults('yellow flowers'))
   }
 
   render() {

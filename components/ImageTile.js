@@ -1,13 +1,14 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { goToImage } from './actions'
+import { goToImage } from '../actions/index'
+import { View, Image } from 'react-native'
 
 class ImageTile extends Component {
   render() {
     return(
       <View>
         <Image source={{uri: this.props.source}}
-          style={{width: 150, height: 150}}/>
+          style={{width: this.props.width, height: this.props.height}}/>
       </View>
     )
   }
