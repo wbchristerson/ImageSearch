@@ -10,6 +10,8 @@ export function scrapeData(obj) {
     webformatWidth: obj.webformatWidth,
     webformatHeight: obj.webformatHeight,
     user: obj.user,
+    userImageURL: obj.userImageURL,
+    tags: obj.tags,
   }
 }
 

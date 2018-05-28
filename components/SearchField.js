@@ -19,7 +19,6 @@ class SearchField extends Component {
     this.props.dispatch(setQuery(this.state.input))
     this.props.dispatch(showResults(true))
     this.props.dispatch(getResults(query))
-    // this.props.dispatch(getResults('yellow flowers'))
   }
 
   render() {

@@ -11,9 +11,22 @@ import { StackNavigator } from 'react-navigation'
 const MainNavigator = StackNavigator({
   Home: {
     screen: SearchPage,
+    navigationOptions: {
+      title: "Home",
+      headerStyle: {
+        backgroundColor: '#42f4ce'
+      }
+    }
   },
   DetailPage: {
     screen: DetailPage,
+    navigationOptions: {
+      title: "Image Page",
+      headerTintColor: 'red',
+      headerStyle: {
+        backgroundColor: '#f4f13d'
+      }
+    }
   }
 })
 
