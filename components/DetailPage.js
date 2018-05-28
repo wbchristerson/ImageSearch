@@ -9,13 +9,13 @@ class DetailPage extends Component {
     return (
       <View style={{backgroundColor: '#23d4b1', height: 300, width: 300}}>
         <Text style={{flex: 1, backgroundColor: '#23d4b1', alignItems: 'center', justifyContent: 'center'}}>
-          Hello
+          {this.props.currentUser}
         </Text>
         <Text style={{flex: 1, backgroundColor: '#23d4b1', alignItems: 'center', justifyContent: 'center'}}>
-          Hello
+          {this.props.currentTags}
         </Text>
         <Text style={{flex: 1, backgroundColor: '#23d4b1', alignItems: 'center', justifyContent: 'center'}}>
-          Hello
+          {this.props.currentResolution}
         </Text>
         <Text style={{flex: 1, backgroundColor: '#23d4b1', alignItems: 'center', justifyContent: 'center'}}>
           Hello
@@ -27,8 +27,9 @@ class DetailPage extends Component {
 
 function mapStateToProps(state) {
   return {
-    showingResults: state.showingResults,
-    resultList: state.resultList,
+    currentUser: state.currentUser,
+    currentTags: state.currentTags,
+    currentResolution: state.currentResolution,
   }
 }
 

@@ -17,7 +17,10 @@ class SearchPage extends Component {
             <ImageTile source={item.webformatURL}
               width={300}
               height={scaleLength(item.webformatWidth, item.webformatHeight)}
-              objRef={this}/>
+              objRef={this}
+              user={item.user}
+              tags={item.tags}
+              resolution={item.recordedWidth.toString() + ' x ' + item.recordedHeight.toString()}/>
           )}/>
       </View>
     )

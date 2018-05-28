@@ -12,6 +12,8 @@ export function scrapeData(obj) {
     user: obj.user,
     userImageURL: obj.userImageURL,
     tags: obj.tags,
+    recordedWidth: obj.hasOwnProperty('imageWidth') ? obj.imageWidth : obj.webformatWidth,
+    recordedHeight: obj.hasOwnProperty('imageHeight') ? obj.imageHeight : obj.webformatHeight,
   }
 }
 

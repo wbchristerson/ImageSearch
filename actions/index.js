@@ -2,6 +2,7 @@ export const GO_TO_IMAGE = 'GO_TO_IMAGE'
 export const GET_IMAGE_LIST = 'GET_IMAGE_LIST'
 export const SHOW_RESULTS = 'SHOW_RESULTS'
 export const SET_QUERY = 'SET_QUERY'
+export const SET_CURRENT_IMAGE = 'SET_CURRENT_IMAGE'
 
 export function goToImage(clickedImage) {
   return {
@@ -36,3 +37,12 @@ export const getResults = (query) => dispatch => (
   .then(data => data.json())
   .then(data => dispatch(getImageList(data)))
 );
+
+export function setCurrentImage(user, tags, resolution) {
+  return {
+    type: SET_CURRENT_IMAGE,
+    user,
+    tags,
+    resolution,
+  }
+}
