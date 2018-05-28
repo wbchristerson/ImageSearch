@@ -3,6 +3,7 @@ import SearchField from './SearchField'
 import ImageTile from './ImageTile'
 import { connect } from 'react-redux'
 import { View, Image, FlatList } from 'react-native'
+import { scaleLength } from '../utils/helper'
 
 class SearchPage extends Component {
   render() {
@@ -10,13 +11,12 @@ class SearchPage extends Component {
     return (
       <View>
         <SearchField/>
-        <Image source={{uri: 'http://smalldata.io/img/sdl_logo.png'}}
-          style={{width: 150, height: 99}}/>
         <FlatList
           data={this.props.resultList}
           renderItem={({item}) => (
-            <ImageTile source={item.previewURL} width={item.previewWidth}
-              height={item.previewHeight}/>
+            <ImageTile source={item.webformatURL}
+              width={300}
+              height={scaleLength(item.webformatWidth, item.webformatHeight)}/>
           )}/>
       </View>
     )

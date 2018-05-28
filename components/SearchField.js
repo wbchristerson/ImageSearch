@@ -15,7 +15,6 @@ class SearchField extends Component {
   }
 
   submit = () => {
-    console.log('Representation: ', encodeURIComponent('yellow flowers'))
     const query = encodeURIComponent(this.state.input)
     this.props.dispatch(setQuery(this.state.input))
     this.props.dispatch(showResults(true))

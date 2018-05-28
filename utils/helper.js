@@ -3,9 +3,18 @@
 export function scrapeData(obj) {
   return {
     comments: obj.comments,
-    previewHeight: obj.previewHeight,
-    previewWidth: obj.previewWidth,
     previewURL: obj.previewURL,
+    previewWidth: obj.previewWidth,
+    previewHeight: obj.previewHeight,
+    webformatURL: obj.webformatURL,
+    webformatWidth: obj.webformatWidth,
+    webformatHeight: obj.webformatHeight,
     user: obj.user,
   }
+}
+
+
+// re-calculate length for image based on width
+export function scaleLength(oldWidth, oldHeight) {
+  return ((300 * oldHeight) / oldWidth)
 }

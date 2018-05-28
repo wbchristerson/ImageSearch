@@ -32,7 +32,7 @@ export function setQuery(query) {
 }
 
 export const getResults = (query) => dispatch => (
-  fetch(`https://pixabay.com/api/?key=9114112-442af9a3d14656a357dba0fe7&q=${query}&image_type=photo&per_page=100`)
+  fetch(`https://pixabay.com/api/?key=9114112-442af9a3d14656a357dba0fe7&q=${query}&image_type=photo&per_page=100&safesearch=true`)
   .then(data => data.json())
   .then(data => dispatch(getImageList(data)))
 );
