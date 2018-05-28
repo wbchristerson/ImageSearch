@@ -5,6 +5,17 @@ import { Provider } from 'react-redux'
 import reducer from './reducers'
 import thunk from 'redux-thunk'
 import SearchPage from './components/SearchPage'
+import DetailPage from './components/DetailPage'
+import { StackNavigator } from 'react-navigation'
+
+const MainNavigator = StackNavigator({
+  Home: {
+    screen: SearchPage,
+  },
+  DetailPage: {
+    screen: DetailPage,
+  }
+})
 
 export default class App extends React.Component {
   render() {
@@ -17,10 +28,13 @@ export default class App extends React.Component {
     )
 
     // <Provider store={createStore(reducer)}>
+    // <SearchPage/>
     return (
       <Provider store={store}>
         <View style={styles.container}>
-          <SearchPage/>
+          <View style={{flexDirection: 'row', flex: 1}}>
+            <MainNavigator/>
+          </View>
         </View>
       </Provider>
     );

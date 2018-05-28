@@ -16,7 +16,8 @@ class SearchPage extends Component {
           renderItem={({item}) => (
             <ImageTile source={item.webformatURL}
               width={300}
-              height={scaleLength(item.webformatWidth, item.webformatHeight)}/>
+              height={scaleLength(item.webformatWidth, item.webformatHeight)}
+              objRef={this}/>
           )}/>
       </View>
     )
