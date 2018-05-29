@@ -37,14 +37,18 @@ class DetailPage extends Component {
 
     // contentContainerStyle={{alignItems: 'center'}}
 
-    // console.log('Tag List: ', this.props.currentTags)
-    width = this.props.screenWidth
+
+    // prevent image from being stretched wider than its actual width
+    width = Math.min(this.props.screenWidth, this.props.currentWidth)
+    // image margin offset
+    offset = (this.props.screenWidth - width) / 2
+    textOffset = Math.max(offset, 20)
     return (
       <ScrollView>
         <Image
           source={{uri: this.props.currentSource}}
-          style={{width: width, height: scaleImageHeight(width, this.props.currentWidth, this.props.currentHeight)}}/>
-        <View style={{padding: 10}}>
+          style={{width: width, height: scaleImageHeight(width, this.props.currentWidth, this.props.currentHeight), marginLeft: offset, marginRight: offset}}/>
+        <View style={{marginTop: 10, marginBottom: 10, marginLeft: textOffset, marginRight: textOffset}}>
           <Text style={{flex: 1, fontSize: 24, alignItems: 'center', justifyContent: 'center'}}>
             User: {this.props.currentUser}
           </Text>

@@ -32,6 +32,7 @@ class SearchPage extends Component {
         <SearchField/>
         <FlatList
           data={this.props.resultList}
+          keyExtractor={() => Math.random().toString(36).substr(2, 9)}
           renderItem={({item}) => (
             <ImageTile
               source={item.webformatURL}
