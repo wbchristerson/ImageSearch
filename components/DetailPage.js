@@ -1,13 +1,14 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { View, Text, Image } from 'react-native'
+import { View, Text, Image, ScrollView } from 'react-native'
 
 class DetailPage extends Component {
   render() {
     console.log('The page is appearing!')
     // FlatList used to save memory for recycled views
     return (
-      <View style={{flex: 1, backgroundColor: '#23d4b1', height: 300, width: 300}}>
+      // <View style={{flex: 1, backgroundColor: '#23d4b1', height: 300, width: 300}}>
+      <ScrollView>
         <Image
           source={{uri: this.props.currentSource}}
           style={{width: this.props.currentWidth,
@@ -21,7 +22,8 @@ class DetailPage extends Component {
         <Text style={{flex: 1, backgroundColor: '#23d4b1', alignItems: 'center', justifyContent: 'center'}}>
           {this.props.currentResolution}
         </Text>
-      </View>
+      </ScrollView>
+      // </View>
     )
   }
 }
