@@ -7,7 +7,11 @@ class DetailPage extends Component {
     console.log('The page is appearing!')
     // FlatList used to save memory for recycled views
     return (
-      <View style={{backgroundColor: '#23d4b1', height: 300, width: 300}}>
+      <View style={{flex: 1, backgroundColor: '#23d4b1', height: 300, width: 300}}>
+        <Image
+          source={{uri: this.props.currentSource}}
+          style={{width: this.props.currentWidth,
+                  height: this.props.currentHeight}}/>
         <Text style={{flex: 1, backgroundColor: '#23d4b1', alignItems: 'center', justifyContent: 'center'}}>
           {this.props.currentUser}
         </Text>
@@ -17,10 +21,6 @@ class DetailPage extends Component {
         <Text style={{flex: 1, backgroundColor: '#23d4b1', alignItems: 'center', justifyContent: 'center'}}>
           {this.props.currentResolution}
         </Text>
-        <Image
-          source={{uri: this.props.currentSource}}
-          style={{width: this.props.currentWidth,
-                  height: this.props.currentHeight}}/>
       </View>
     )
   }
