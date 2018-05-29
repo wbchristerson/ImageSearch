@@ -28,4 +28,26 @@ export function scaleImageHeight(screenWidth, oldWidth, oldHeight) {
   return ((oldHeight * screenWidth) / oldWidth)
 }
 
-// split string of tags into 
+// split string of tags into list of
+export function splitTags(tagString) {
+  arr = tagString.split(',')
+  if (arr.length == 1) {
+    arr = tagString.split(' ')
+  }
+  for (let i = 0; i < arr.length; i++) {
+    console.log('Hello: ' + arr[i] + '\n')
+  }
+  for (let i = 0; i < arr.length; i++) {
+    if ((arr[i].length > 0) && (arr[i].charAt(0) == ' ')) {
+      arr[i] = arr[i].slice(1)
+    }
+    if ((arr[i].length > 0) && (arr[i].charAt(arr[i].length - 1) == ' ')) {
+      arr[i] = arr[i].slice(0,-1)
+    }
+  }
+  newArr = arr.join(' #')
+  if (newArr.length > 0) {
+    newArr = '#' + newArr
+  }
+  return newArr
+}
