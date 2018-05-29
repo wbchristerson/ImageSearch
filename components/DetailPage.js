@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { View, Text } from 'react-native'
+import { View, Text, Image } from 'react-native'
 
 class DetailPage extends Component {
   render() {
@@ -17,9 +17,10 @@ class DetailPage extends Component {
         <Text style={{flex: 1, backgroundColor: '#23d4b1', alignItems: 'center', justifyContent: 'center'}}>
           {this.props.currentResolution}
         </Text>
-        <Text style={{flex: 1, backgroundColor: '#23d4b1', alignItems: 'center', justifyContent: 'center'}}>
-          Hello
-        </Text>
+        <Image
+          source={{uri: this.props.currentSource}}
+          style={{width: this.props.currentWidth,
+                  height: this.props.currentHeight}}/>
       </View>
     )
   }
@@ -30,6 +31,9 @@ function mapStateToProps(state) {
     currentUser: state.currentUser,
     currentTags: state.currentTags,
     currentResolution: state.currentResolution,
+    currentSource: state.currentSource,
+    currentWidth: state.currentWidth,
+    currentHeight: state.currentHeight,
   }
 }
 

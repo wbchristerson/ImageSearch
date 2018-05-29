@@ -6,7 +6,8 @@ import { Text, View, Image, TouchableOpacity } from 'react-native'
 class ImageTile extends Component {
   setChosenImage = () => {
     this.props.dispatch(setCurrentImage(this.props.user, this.props.tags,
-      this.props.resolution))
+      this.props.resolution, this.props.source, this.props.sourceWidth,
+      this.props.sourceHeight))
   }
 
   render() {

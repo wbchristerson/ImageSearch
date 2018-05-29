@@ -38,11 +38,14 @@ export const getResults = (query) => dispatch => (
   .then(data => dispatch(getImageList(data)))
 );
 
-export function setCurrentImage(user, tags, resolution) {
+export function setCurrentImage(user, tags, resolution, source, width, height) {
   return {
     type: SET_CURRENT_IMAGE,
     user,
     tags,
     resolution,
+    source,
+    width,
+    height,
   }
 }

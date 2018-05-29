@@ -14,7 +14,10 @@ class SearchPage extends Component {
         <FlatList
           data={this.props.resultList}
           renderItem={({item}) => (
-            <ImageTile source={item.webformatURL}
+            <ImageTile
+              source={item.webformatURL}
+              sourceWidth={item.webformatWidth}
+              sourceHeight={item.webformatHeight}
               width={300}
               height={scaleLength(item.webformatWidth, item.webformatHeight)}
               objRef={this}

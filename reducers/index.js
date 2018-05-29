@@ -9,6 +9,7 @@ const initialState = {
   currentUser: '',
   currentTags: '',
   currentResolution: '',
+  currentSource: '',
 }
 
 function screenResult (state = initialState, action) {
@@ -47,6 +48,9 @@ function screenResult (state = initialState, action) {
         currentUser: action.user,
         currentTags: action.tags,
         currentResolution: action.resolution,
+        currentSource: action.source,
+        currentWidth: action.width,
+        currentHeight: action.height,
       }
     default:
       return state
