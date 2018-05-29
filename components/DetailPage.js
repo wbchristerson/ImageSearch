@@ -5,19 +5,16 @@ import { scaleImageHeight, splitTags } from '../utils/helper'
 import { setDimensions } from '../actions/index'
 
 class DetailPage extends Component {
-  test = () => {
-    console.log('hi')
-  }
-
   updateDimensions = () => {
     var {height, width} = Dimensions.get('window')
     this.props.dispatch(setDimensions(width, height))
   }
 
-  // forceUpdate()
   componentDidMount() {
-    var {height, width} = Dimensions.get('window')
-    this.props.dispatch(setDimensions(width, height))
+    // const {height, width} = Dimensions.get('window')
+    // this.props.dispatch(setDimensions(width, height))
+
+    this.updateDimensions()
     Dimensions.addEventListener("change", this.updateDimensions);
   }
 

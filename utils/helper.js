@@ -18,9 +18,9 @@ export function scrapeData(obj) {
 }
 
 
-// re-calculate length for image based on width
-export function scaleLength(oldWidth, oldHeight) {
-  return ((300 * oldHeight) / oldWidth)
+// re-calculate length for image based on measuredWidth parameter
+export function scaleLength(measuredWidth, oldWidth, oldHeight) {
+  return ((measuredWidth * oldHeight) / oldWidth)
 }
 
 // re-size image's height to match screen width
@@ -33,9 +33,6 @@ export function splitTags(tagString) {
   arr = tagString.split(',')
   if (arr.length == 1) {
     arr = tagString.split(' ')
-  }
-  for (let i = 0; i < arr.length; i++) {
-    console.log('Hello: ' + arr[i] + '\n')
   }
   for (let i = 0; i < arr.length; i++) {
     if ((arr[i].length > 0) && (arr[i].charAt(0) == ' ')) {

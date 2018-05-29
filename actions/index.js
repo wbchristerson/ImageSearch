@@ -51,6 +51,8 @@ export function setCurrentImage(user, tags, resolution, source, width, height) {
   }
 }
 
+// set recorded screen dimensions, for keeping track of whether the device is in
+// portrait or landscape orientation
 export function setDimensions(newWidth, newHeight) {
   return {
     type: SET_DIMENSIONS,

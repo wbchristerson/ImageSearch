@@ -12,7 +12,7 @@ class ImageTile extends Component {
 
   render() {
     return(
-      <View>
+      <View style={{marginLeft: this.props.sideMargin, marginRight: this.props.sideMargin, marginTop: 20, marginBottom: 20}}>
         <TouchableOpacity onPress={() => {
           this.setChosenImage()
           this.props.objRef.props.navigation.navigate(
