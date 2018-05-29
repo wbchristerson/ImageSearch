@@ -22,3 +22,8 @@ export function scrapeData(obj) {
 export function scaleLength(oldWidth, oldHeight) {
   return ((300 * oldHeight) / oldWidth)
 }
+
+// re-size image's height to match screen width
+export function scaleImageHeight(screenWidth, oldWidth, oldHeight) {
+  return ((oldHeight * screenWidth) / oldWidth)
+}
