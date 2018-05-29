@@ -27,3 +27,5 @@ export function scaleLength(oldWidth, oldHeight) {
 export function scaleImageHeight(screenWidth, oldWidth, oldHeight) {
   return ((oldHeight * screenWidth) / oldWidth)
 }
+
+// split string of tags into 

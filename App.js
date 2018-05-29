@@ -22,13 +22,14 @@ const MainNavigator = StackNavigator({
     screen: DetailPage,
     navigationOptions: {
       title: "Image Page",
-      headerTintColor: 'red',
       headerStyle: {
-        backgroundColor: '#f4f13d'
+        backgroundColor: '#4bf442'
       }
     }
   }
 })
+// headerTintColor: 'red',
+// #f4f13d
 
 export default class App extends React.Component {
   render() {
