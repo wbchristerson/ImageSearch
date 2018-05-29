@@ -3,6 +3,7 @@ export const GET_IMAGE_LIST = 'GET_IMAGE_LIST'
 export const SHOW_RESULTS = 'SHOW_RESULTS'
 export const SET_QUERY = 'SET_QUERY'
 export const SET_CURRENT_IMAGE = 'SET_CURRENT_IMAGE'
+export const SET_DIMENSIONS = 'SET_DIMENSIONS'
 
 export function goToImage(clickedImage) {
   return {
@@ -47,5 +48,13 @@ export function setCurrentImage(user, tags, resolution, source, width, height) {
     source,
     width,
     height,
+  }
+}
+
+export function setDimensions(newWidth, newHeight) {
+  return {
+    type: SET_DIMENSIONS,
+    newWidth,
+    newHeight,
   }
 }

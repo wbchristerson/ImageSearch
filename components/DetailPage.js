@@ -2,21 +2,46 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { View, Text, Image, ScrollView, Dimensions } from 'react-native'
 import { scaleImageHeight, splitTags } from '../utils/helper'
+import { setDimensions } from '../actions/index'
 
 class DetailPage extends Component {
+  test = () => {
+    console.log('hi')
+  }
+
+  updateDimensions = () => {
+    var {height, width} = Dimensions.get('window')
+    this.props.dispatch(setDimensions(width, height))
+  }
+
+  // forceUpdate()
+  componentDidMount() {
+    var {height, width} = Dimensions.get('window')
+    this.props.dispatch(setDimensions(width, height))
+    Dimensions.addEventListener("change", this.updateDimensions);
+  }
+
+  componentWillUnmount() {
+      // Important to stop updating state after unmount
+      Dimensions.removeEventListener("change", this.updateDimensions);
+    }
+
   render() {
     // FlatList used to save memory for recycled views
     // <View style={{flex: 1, backgroundColor: '#23d4b1', height: 300, width: 300}}>
     // </View>
-    var {height, width} = Dimensions.get('window')
-    console.log('Height: ', height)
-    console.log('Width: ', width)
+
+    // var {height, width} = Dimensions.get('window')
+    // console.log('Height: ', height)
+    // console.log('Width: ', width)
+
     // style={{width: this.props.currentWidth,
     //         height: this.props.currentHeight}}
 
     // contentContainerStyle={{alignItems: 'center'}}
 
-    console.log('Tag List: ', this.props.currentTags)
+    // console.log('Tag List: ', this.props.currentTags)
+    width = this.props.screenWidth
     return (
       <ScrollView>
         <Image
@@ -49,6 +74,8 @@ function mapStateToProps(state) {
     currentSource: state.currentSource,
     currentWidth: state.currentWidth,
     currentHeight: state.currentHeight,
+    screenWidth: state.screenWidth,
+    screenHeight: state.screenHeight,
   }
 }
 

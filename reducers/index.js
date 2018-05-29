@@ -1,4 +1,4 @@
-import { GO_TO_IMAGE, GET_IMAGE_LIST, SHOW_RESULTS, SET_QUERY, SET_CURRENT_IMAGE } from '../actions'
+import { GO_TO_IMAGE, GET_IMAGE_LIST, SHOW_RESULTS, SET_QUERY, SET_CURRENT_IMAGE, SET_DIMENSIONS } from '../actions'
 import { scrapeData } from '../utils/helper'
 
 const initialState = {
@@ -10,6 +10,8 @@ const initialState = {
   currentTags: '',
   currentResolution: '',
   currentSource: '',
+  screenWidth: 0,
+  screenHeight: 0,
 }
 
 function screenResult (state = initialState, action) {
@@ -51,6 +53,12 @@ function screenResult (state = initialState, action) {
         currentSource: action.source,
         currentWidth: action.width,
         currentHeight: action.height,
+      }
+    case SET_DIMENSIONS:
+      return {
+        ...state,
+        screenWidth: action.newWidth,
+        screenHeight: action.newHeight,
       }
     default:
       return state
