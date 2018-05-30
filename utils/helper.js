@@ -2,6 +2,7 @@
 // a single object
 export function scrapeData(obj) {
   return {
+    logo: false, // indicates whether item represents Pixabay logo or an actual image
     comments: obj.comments,
     previewURL: obj.previewURL,
     previewWidth: obj.previewWidth,

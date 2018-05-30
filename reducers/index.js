@@ -24,7 +24,7 @@ function screenResult (state = initialState, action) {
       }
     case GET_IMAGE_LIST:
       console.log('Action Data: ', action.data)
-      newResultList = []
+      newResultList = [{ logo: true }] // initial entry for logo
       console.log('Action Data Hits: ', action.data.hits)
       for (let i = 0; i < action.data.hits.length; i++) {
         newResultList.push(scrapeData(action.data.hits[i]))
