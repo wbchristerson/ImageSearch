@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, TextInput, KeyboardAvoidingView, TouchableOpacity } from 'react-native'
+import { Text, TextInput, KeyboardAvoidingView, TouchableOpacity, ToastAndroid } from 'react-native'
 import { connect } from 'react-redux'
 import { goToImage, getResults, showResults, setQuery } from '../actions'
 
@@ -9,9 +9,15 @@ class SearchField extends Component {
   }
 
   handleTextChange = (newInput) => {
-    this.setState({
-      input: newInput
-    })
+    const encodedQuery = encodeURIComponent(newInput)
+    if (encodedQuery.length <= 100) {
+      this.setState({
+        input: newInput
+      })
+    } else {
+      // warn user about search query length limit
+      ToastAndroid.show("Search Term's URL Encoding Must Not Exceed A Length Of 100", ToastAndroid.SHORT)
+    }
   }
 
   submit = () => {
