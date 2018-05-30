@@ -1,4 +1,4 @@
-import { GO_TO_IMAGE, GET_IMAGE_LIST, SHOW_RESULTS, SET_QUERY, SET_CURRENT_IMAGE, SET_DIMENSIONS } from '../actions'
+import { GO_TO_IMAGE, GET_IMAGE_LIST, SHOW_RESULTS, SET_QUERY, SET_CURRENT_IMAGE, SET_DIMENSIONS, SET_ERROR } from '../actions'
 import { scrapeData } from '../utils/helper'
 
 const initialState = {
@@ -12,6 +12,7 @@ const initialState = {
   currentSource: '',
   screenWidth: 0,
   screenHeight: 0,
+  querySuccess: true, // whether the query resulted in a response or failure
 }
 
 function screenResult (state = initialState, action) {
@@ -33,6 +34,7 @@ function screenResult (state = initialState, action) {
       return {
         ...state,
         resultList: newResultList,
+        querySuccess: true, // query succeeded
       }
     case SHOW_RESULTS:
       return {
@@ -59,6 +61,11 @@ function screenResult (state = initialState, action) {
         ...state,
         screenWidth: action.newWidth,
         screenHeight: action.newHeight,
+      }
+    case SET_ERROR:
+      return {
+        ...state,
+        querySuccess: false,
       }
     default:
       return state
