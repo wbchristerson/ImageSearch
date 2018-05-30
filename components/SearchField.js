@@ -21,18 +21,33 @@ class SearchField extends Component {
     this.props.dispatch(getResults(query))
   }
 
+  // if in portrait mode, make selection field span most of screen; if in landscape
+  // mode, make selection field span 80% of screen width
+  fieldWidthRatio = () => {
+    return this.props.screenWidth <= this.props.screenHeight ? 1.0 : 0.8
+  }
+
+  // if in portrait mode, make button width span 20% of screen width; if in
+  // landscape mode, make button width span 15% of screen width
+  buttonWidthRatio = () => {
+    return this.props.screenWidth <= this.props.screenHeight ? 0.3 : 0.15
+  }
+
   render() {
     let input = this.state.input
+    const componentWidth = this.props.screenWidth
+    const fieldWidth = (componentWidth - 20) * this.fieldWidthRatio()
+    const buttonWidth = (componentWidth - 20) * this.buttonWidthRatio()
     return(
-      <KeyboardAvoidingView behavior='padding'>
-        <Text>This is a test.</Text>
+      <KeyboardAvoidingView behavior='padding' style={{marginLeft: 10, marginRight: 10, marginTop: 10, marginBottom: 4, flexDirection: 'row', maxWidth: componentWidth - 20, flexWrap: 'wrap', justifyContent: 'center'}}>
         <TextInput
+          style={{paddingLeft: 10, paddingRight: 10, height: 40, fontSize: 24, width: fieldWidth}}
           value={input}
           onChangeText={this.handleTextChange}
           placeholder='Search Term'
           placeholderTextColor='#3E5982'/>
-        <TouchableOpacity onPress={this.submit}>
-          <Text>SUBMIT</Text>
+        <TouchableOpacity style={{ width: buttonWidth, backgroundColor: '#e80d0d', padding: 10, alignItems: 'center', borderRadius: 2 }} onPress={this.submit}>
+          <Text style={{ color: 'white' }}>SUBMIT</Text>
         </TouchableOpacity>
       </KeyboardAvoidingView>
     )
@@ -41,7 +56,10 @@ class SearchField extends Component {
 
 function mapStateToProps (state) {
   return {
-    imageId: state.imageId
+    screenWidth: state.screenWidth,
+    screenHeight: state.screenHeight,
+    // imageId: state.imageId
+
   }
 }
 
