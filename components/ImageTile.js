@@ -11,13 +11,13 @@ class ImageTile extends Component {
   }
 
   render() {
+    query = this.props.currentQuery
     return(
       <View style={{marginLeft: this.props.sideMargin, marginRight: this.props.sideMargin, marginTop: 20, marginBottom: 20}}>
         <TouchableOpacity onPress={() => {
           this.setChosenImage()
-          this.props.objRef.props.navigation.navigate(
-          'DetailPage',
-          { entryId: { newTitle: 'Hi'}})}}>
+          return this.props.objRef.props.navigation.navigate(
+          'DetailPage', { title: query })}}>
           <Image source={{uri: this.props.source}}
             style={{width: this.props.width, height: this.props.height}}/>
         </TouchableOpacity>
@@ -28,7 +28,7 @@ class ImageTile extends Component {
 
 function mapStateToProps (state) {
   return {
-    imageId: state.imageId
+    currentQuery: state.currentQuery,
   }
 }
 

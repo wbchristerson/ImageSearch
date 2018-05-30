@@ -17,8 +17,8 @@ class SearchPage extends Component {
     Dimensions.addEventListener("change", this.updateDimensions);
   }
 
+  // Important to stop updating state after unmount
   componentWillUnmount() {
-    // Important to stop updating state after unmount
     Dimensions.removeEventListener("change", this.updateDimensions);
   }
 

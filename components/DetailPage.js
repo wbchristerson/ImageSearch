@@ -6,22 +6,36 @@ import { setDimensions } from '../actions/index'
 
 class DetailPage extends Component {
   updateDimensions = () => {
-    var {height, width} = Dimensions.get('window')
+    const { width, height } = Dimensions.get('window')
     this.props.dispatch(setDimensions(width, height))
   }
 
   componentDidMount() {
     // const {height, width} = Dimensions.get('window')
     // this.props.dispatch(setDimensions(width, height))
-
     this.updateDimensions()
-    Dimensions.addEventListener("change", this.updateDimensions);
+    Dimensions.addEventListener("change", this.updateDimensions)
   }
 
+  // Important to stop updating state after unmount
   componentWillUnmount() {
-      // Important to stop updating state after unmount
-      Dimensions.removeEventListener("change", this.updateDimensions);
+    Dimensions.removeEventListener("change", this.updateDimensions)
+  }
+
+  // static navigationOptions = ({ navigation }) => {
+  //   const { entryId } = navigation.state.params
+  //   let strId = entryId.newTitle
+  //   return {
+  //     title: 'Apple'
+  //   }
+  // }
+
+  static navigationOptions = ({ navigation }) => {
+    const { title } = navigation.state.params
+    return {
+      title: title,
     }
+  };
 
   render() {
     // FlatList used to save memory for recycled views

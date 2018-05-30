@@ -21,7 +21,7 @@ const MainNavigator = StackNavigator({
   DetailPage: {
     screen: DetailPage,
     navigationOptions: {
-      title: "Image Page",
+      // title: "Image Page",
       headerStyle: {
         backgroundColor: '#4bf442'
       }
