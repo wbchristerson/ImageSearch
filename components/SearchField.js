@@ -22,6 +22,7 @@ class SearchField extends Component {
 
   submit = () => {
     const query = encodeURIComponent(this.state.input)
+    this.props.listRef.scrollToOffset({ x: 0, y: 0, animated: true})
     this.props.dispatch(setQuery(this.state.input))
     this.props.dispatch(showResults(true))
     this.props.dispatch(getResults(query))
