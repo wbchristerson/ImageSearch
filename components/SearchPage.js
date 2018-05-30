@@ -29,7 +29,7 @@ class SearchPage extends Component {
     const sideMargin = (this.props.screenHeight >= this.props.screenWidth) ? 20 : 40
 
     return (
-      <View>
+      <View style={{flex: 1}}>
         <SearchField/>
         {this.props.querySuccess &&
           <FlatList
