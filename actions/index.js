@@ -5,6 +5,7 @@ export const SET_QUERY = 'SET_QUERY'
 export const SET_CURRENT_IMAGE = 'SET_CURRENT_IMAGE'
 export const SET_DIMENSIONS = 'SET_DIMENSIONS'
 export const SET_ERROR = 'SET_ERROR'
+export const SET_Y = 'SET_Y'
 
 export function goToImage(clickedImage) {
   return {
@@ -67,5 +68,12 @@ export function setDimensions(newWidth, newHeight) {
     type: SET_DIMENSIONS,
     newWidth,
     newHeight,
+  }
+}
+
+export function setY(newY) {
+  return {
+    type: SET_Y,
+    newY,
   }
 }

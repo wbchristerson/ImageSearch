@@ -1,4 +1,4 @@
-import { GO_TO_IMAGE, GET_IMAGE_LIST, SHOW_RESULTS, SET_QUERY, SET_CURRENT_IMAGE, SET_DIMENSIONS, SET_ERROR } from '../actions'
+import { GO_TO_IMAGE, GET_IMAGE_LIST, SHOW_RESULTS, SET_QUERY, SET_CURRENT_IMAGE, SET_DIMENSIONS, SET_ERROR, SET_Y } from '../actions'
 import { scrapeData } from '../utils/helper'
 
 const initialState = {
@@ -13,6 +13,7 @@ const initialState = {
   screenWidth: 0,
   screenHeight: 0,
   querySuccess: true, // whether the query resulted in a response or failure
+  currentY: 0, // screen location/position in search result flatlist
 }
 
 function screenResult (state = initialState, action) {
@@ -23,9 +24,7 @@ function screenResult (state = initialState, action) {
         ...action.clickedImage,
       }
     case GET_IMAGE_LIST:
-      console.log('Action Data: ', action.data)
       newResultList = [{ logo: true }] // initial entry for logo
-      console.log('Action Data Hits: ', action.data.hits)
       for (let i = 0; i < action.data.hits.length; i++) {
         newResultList.push(scrapeData(action.data.hits[i]))
         console.log("Object: ", action.data.hits[i])
@@ -66,6 +65,11 @@ function screenResult (state = initialState, action) {
       return {
         ...state,
         querySuccess: false,
+      }
+    case SET_Y:
+      return {
+        ...state,
+        currentY: action.newY,
       }
     default:
       return state

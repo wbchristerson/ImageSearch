@@ -5,7 +5,7 @@ import ErrorMessage from './ErrorMessage'
 import { connect } from 'react-redux'
 import { View, FlatList, Dimensions, Image, Text, Linking, TouchableOpacity } from 'react-native'
 import { scaleLength } from '../utils/helper'
-import { setDimensions } from '../actions/index'
+import { setDimensions, setY } from '../actions/index'
 
 class SearchPage extends Component {
   updateDimensions = () => {
@@ -24,15 +24,42 @@ class SearchPage extends Component {
     Dimensions.removeEventListener("change", this.updateDimensions);
   }
 
+  // myMove() {
+  //   let yOffset = event.nativeEvent.contentOffset.y
+  //   let contentHeight = event.nativeEvent.contentSize.height
+  //   console.log('yOffset: ', yOffset)
+  //   console.log('contentHeight: ', contentHeight)
+  //   this.refs.listRef.scrollToIndex({ index: 15, viewOffset: 0 })
+  // }
+
+  handleScroll = (event) => {
+    this.props.dispatch(setY(event.nativeEvent.contentOffset.y))
+    console.log(event.nativeEvent.contentOffset.y);
+  }
+
+  // <TouchableOpacity onPress={() => this.myMove()}>
+  //   <Text style={{fontSize: 24}}>Hello</Text>
+  // </TouchableOpacity>
+
   render() {
     // set wider left and right margins when in landscape mode
     const sideMargin = (this.props.screenHeight >= this.props.screenWidth) ? 20 : 40
-
+    let level = 0
     return (
       <View style={{flex: 1}}>
         <SearchField listRef={this.refs.listRef}/>
         {this.props.querySuccess &&
           <FlatList
+            onScroll={this.handleScroll}
+            // onViewableItemsChanged={({ viewableItems, changed }) => {
+            //   console.log("Visible items are", viewableItems);
+            //   console.log("Changed in this iteration", changed);
+            // }}
+            // viewabilityConfig={{
+            //   itemVisiblePercentThreshold: 50
+            // }}
+
+            // onViewableItemsChanged={this.onItemsChanges}
             ref='listRef' // for setting list to top on new queries
             data={this.props.resultList}
             keyExtractor={() => Math.random().toString(36).substr(2, 9)}
