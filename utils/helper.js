@@ -49,3 +49,44 @@ export function splitTags(tagString) {
   }
   return newArr
 }
+
+
+// create a list of offsets of images from the beginning of the flatlist for
+// portrait view
+export function createPortraitOffsets(mWidth, mHeight, resultList) {
+  let portraitArr = [0]
+  let width = mWidth
+  let height = mHeight
+  if (width > height) {
+    let temp = width
+    width = height
+    height = temp
+  }
+  let newHeight
+  for (let i = 0; i < resultList.length; i++) {
+    newHeight = scaleLength(width - 40, resultList[i].webformatWidth,
+      resultList[i].webformatHeight)
+    portraitArr.push(newHeight + 40)
+  }
+  return portraitArr
+}
+
+// create a list of offsets of images from the beginning of the flatlist for
+// landscape view
+export function createLandscapeOffsets(mWidth, mHeight, resultList) {
+  let landscapeArr = [0]
+  let width = mWidth
+  let height = mHeight
+  if (width > height) {
+    let temp = width
+    width = height
+    height = temp
+  }
+  let newHeight
+  for (let i = 0; i < resultList.length; i++) {
+    newHeight = scaleLength(height - 80, resultList[i].webformatWidth,
+      resultList[i].webformatHeight)
+    landscapeArr.push(newHeight + 40)
+  }
+  return landscapeArr
+}

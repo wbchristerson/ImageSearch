@@ -1,5 +1,7 @@
-import { GO_TO_IMAGE, GET_IMAGE_LIST, SHOW_RESULTS, SET_QUERY, SET_CURRENT_IMAGE, SET_DIMENSIONS, SET_ERROR, SET_Y } from '../actions'
-import { scrapeData } from '../utils/helper'
+import { GO_TO_IMAGE, GET_IMAGE_LIST, SHOW_RESULTS, SET_QUERY,
+  SET_CURRENT_IMAGE, SET_DIMENSIONS, SET_ERROR, SET_Y, SET_PORTRAIT_OFFSETS,
+  SET_LANDSCAPE_OFFSETS } from '../actions'
+import { scrapeData, createPortraitOffsets, createLandscapeOffsets } from '../utils/helper'
 
 const initialState = {
   imageId: -1,
@@ -14,6 +16,8 @@ const initialState = {
   screenHeight: 0,
   querySuccess: true, // whether the query resulted in a response or failure
   currentY: 0, // screen location/position in search result flatlist
+  portraitOffsets: [], // list of image offsets in portrait view
+  landscapeOffsets: [], // list of image offsets in landscape view
 }
 
 function screenResult (state = initialState, action) {
@@ -30,10 +34,14 @@ function screenResult (state = initialState, action) {
         console.log("Object: ", action.data.hits[i])
         console.log(scrapeData(action.data.hits[i]))
       }
+      newPortraitOffsets = createPortraitOffsets(state.screenWidth, state.screenHeight, newResultList)
+      newLandscapeOffsets = createLandscapeOffsets(state.screenWidth, state.screenHeight, newResultList)
       return {
         ...state,
         resultList: newResultList,
         querySuccess: true, // query succeeded
+        portraitOffsets: newPortraitOffsets,
+        landscapeOffsets: newLandscapeOffsets,
       }
     case SHOW_RESULTS:
       return {
@@ -70,6 +78,16 @@ function screenResult (state = initialState, action) {
       return {
         ...state,
         currentY: action.newY,
+      }
+    case SET_PORTRAIT_OFFSETS:
+      return {
+        ...state,
+        portraitOffsets: action.portraitOffsets,
+      }
+    case SET_LANDSCAPE_OFFSETS:
+      return {
+        ...state,
+        landscapeOffsets: action.landscapeOffsets,
       }
     default:
       return state

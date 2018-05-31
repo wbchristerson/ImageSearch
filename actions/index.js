@@ -6,6 +6,8 @@ export const SET_CURRENT_IMAGE = 'SET_CURRENT_IMAGE'
 export const SET_DIMENSIONS = 'SET_DIMENSIONS'
 export const SET_ERROR = 'SET_ERROR'
 export const SET_Y = 'SET_Y'
+export const SET_PORTRAIT_OFFSETS = 'SET_PORTRAIT_OFFSETS'
+export const SET_LANDSCAPE_OFFSETS = 'SET_LANDSCAPE_OFFSETS'
 
 export function goToImage(clickedImage) {
   return {
@@ -75,5 +77,19 @@ export function setY(newY) {
   return {
     type: SET_Y,
     newY,
+  }
+}
+
+export function setPortraitOffsets(portraitOffsets) {
+  return {
+    type: SET_PORTRAIT_OFFSETS,
+    portraitOffsets,
+  }
+}
+
+export function setLandscapeOffsets(landscapeOffsets) {
+  return {
+    type: SET_LANDSCAPE_OFFSETS,
+    landscapeOffsets
   }
 }

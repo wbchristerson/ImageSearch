@@ -5,7 +5,7 @@ import ErrorMessage from './ErrorMessage'
 import { connect } from 'react-redux'
 import { View, FlatList, Dimensions, Image, Text, Linking, TouchableOpacity } from 'react-native'
 import { scaleLength } from '../utils/helper'
-import { setDimensions, setY } from '../actions/index'
+import { setDimensions, setY, setPortraitOffsets, setLandscapeOffsets } from '../actions/index'
 
 class SearchPage extends Component {
   updateDimensions = () => {
@@ -40,6 +40,33 @@ class SearchPage extends Component {
   // <TouchableOpacity onPress={() => this.myMove()}>
   //   <Text style={{fontSize: 24}}>Hello</Text>
   // </TouchableOpacity>
+
+
+  // // create a list of offsets of images from the beginning of the flatlist
+  // createOffsetList = () => {
+  //   portraitArr = [0]
+  //   landscapeArr = [0]
+  //   let width = this.props.screenWidth
+  //   let height = this.props.screenHeight
+  //   if (width > height) {
+  //     let temp = width
+  //     width = height
+  //     height = temp
+  //   }
+  //   let newHeight
+  //   for (let i = 0; i < this.props.resultList.length; i++) {
+  //     newHeight = scaleLength(width - 40,
+  //       this.props.resultList[i].webformatWidth,
+  //       this.props.resultList[i].webformatHeight)
+  //     portraitArr.push(height + 40)
+  //     newHeight = scaleLength(height - 80,
+  //       this.props.resultList[i].webformatWidth,
+  //       this.props.resultList[i].webformatHeight)
+  //     landscapeArr.push(height + 40)
+  //   }
+  //   this.props.dispatch(setPortraitOffsets(portraitArr))
+  //   this.props.dispatch(setLandscapeOffsets(landscapeArr))
+  // }
 
   render() {
     // set wider left and right margins when in landscape mode
