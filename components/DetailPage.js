@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { View, Text, Image, ScrollView, Dimensions, Animated, StyleSheet } from 'react-native'
+import { View, Text, Image, ScrollView, Dimensions, Animated,
+  StyleSheet } from 'react-native'
 import { scaleImageHeight, splitTags } from '../utils/helper'
 import { setDimensions } from '../actions/index'
 
@@ -48,15 +49,15 @@ class DetailPage extends Component {
         <Animated.Image
           source={{uri: this.props.currentSource}}
           style={[{width: width, height: scaleImageHeight(width, this.props.currentWidth, this.props.currentHeight),
-                    marginLeft: offset, marginRight: offset}, { opacity }]}/>
+                    marginLeft: offset, marginRight: offset}, {opacity}]}/>
         <View style={[styles.viewStyle, {marginLeft: textOffset, marginRight: textOffset}]}>
           <Text style={styles.textStyle}>
             User: {this.props.currentUser}
           </Text>
-          <Text style={[styles.textStyle, { marginTop: 5}]}>
+          <Text style={[styles.textStyle, {marginTop: 5}]}>
             Resolution: {this.props.currentResolution}
           </Text>
-          <Text style={[styles.textStyle, { marginTop: 5}]}>
+          <Text style={[styles.textStyle, {marginTop: 5}]}>
             Tags: {splitTags(this.props.currentTags)}
           </Text>
         </View>

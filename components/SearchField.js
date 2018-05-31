@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import { Text, TextInput, KeyboardAvoidingView, TouchableOpacity, ToastAndroid,
   StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
-import { goToImage, getResults, showResults, setQuery, setReady } from '../actions'
+import { goToImage, getResults, showResults, setQuery,
+  setReady } from '../actions/index'
 
 class SearchField extends Component {
   state = {
@@ -24,7 +25,7 @@ class SearchField extends Component {
   submit = () => {
     const query = encodeURIComponent(this.state.input)
     if (this.props.listRef) {
-      this.props.listRef.scrollToOffset({ x: 0, y: 0, animated: true})
+      this.props.listRef.scrollToOffset({x: 0, y: 0, animated: true})
     }
     this.props.dispatch(setReady(false))
     this.props.dispatch(setQuery(this.state.input))

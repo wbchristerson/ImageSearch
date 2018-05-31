@@ -7,7 +7,7 @@ import { Text, View, StyleSheet } from 'react-native'
 class ErrorMessage extends Component {
   render() {
     return(
-      <View style={[styles.errorView, { width: this.props.screenWidth }]}>
+      <View style={[styles.errorView, {width: this.props.screenWidth}]}>
         <Text style={{fontSize: 24}}>Your query failed.</Text>
         <Text style={{fontSize: 24}}>Please try again later.</Text>
       </View>
