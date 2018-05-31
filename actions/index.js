@@ -5,6 +5,7 @@ export const SET_QUERY = 'SET_QUERY'
 export const SET_CURRENT_IMAGE = 'SET_CURRENT_IMAGE'
 export const SET_DIMENSIONS = 'SET_DIMENSIONS'
 export const SET_ERROR = 'SET_ERROR'
+export const SET_READY = 'SET_READY'
 
 export function goToImage(clickedImage) {
   return {
@@ -38,8 +39,16 @@ export const getResults = (query) => dispatch => (
   fetch(`https://pixabay.com/api/?key=9114112-442af9a3d14656a357dba0fe7&q=${query}&image_type=photo&per_page=100&safesearch=true`)
   .then(data => data.json())
   .then(data => dispatch(getImageList(data)))
+  .then(() => dispatch(setReady(true)))
   .catch(() => dispatch(setError()))
 )
+
+export function setReady(status) {
+  return {
+    type: SET_READY,
+    status,
+  }
+}
 
 // signal that querySuccess should be set to false
 export function setError() {

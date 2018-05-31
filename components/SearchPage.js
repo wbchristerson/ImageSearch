@@ -6,6 +6,7 @@ import { connect } from 'react-redux'
 import { View, FlatList, Dimensions, Image, Text, Linking, TouchableOpacity } from 'react-native'
 import { scaleLength, binarySearch } from '../utils/helper'
 import { setDimensions } from '../actions/index'
+import { AppLoading } from 'expo'
 
 class SearchPage extends Component {
   updateDimensions = () => {
@@ -23,12 +24,14 @@ class SearchPage extends Component {
     Dimensions.removeEventListener("change", this.updateDimensions);
   }
 
+  // {!this.props.ready && <AppLoading/>}
   render() {
     const sideMargin = 20
     return (
       <View style={{flex: 1}}>
         <SearchField listRef={this.refs.listRef}/>
-        {this.props.querySuccess &&
+        {!this.props.ready && <AppLoading/>}
+        {this.props.querySuccess && this.props.ready &&
           <FlatList
             ref='listRef' // for setting list to top on new queries
             data={this.props.resultList}
@@ -74,6 +77,7 @@ function mapStateToProps(state) {
     screenWidth: state.screenWidth,
     screenHeight: state.screenHeight,
     querySuccess: state.querySuccess,
+    ready: state.ready,
   }
 }
 

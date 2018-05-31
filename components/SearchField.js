@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Text, TextInput, KeyboardAvoidingView, TouchableOpacity, ToastAndroid } from 'react-native'
 import { connect } from 'react-redux'
-import { goToImage, getResults, showResults, setQuery } from '../actions'
+import { goToImage, getResults, showResults, setQuery, setReady } from '../actions'
 
 class SearchField extends Component {
   state = {
@@ -22,7 +22,10 @@ class SearchField extends Component {
 
   submit = () => {
     const query = encodeURIComponent(this.state.input)
-    this.props.listRef.scrollToOffset({ x: 0, y: 0, animated: true})
+    if (this.props.listRef) {
+      this.props.listRef.scrollToOffset({ x: 0, y: 0, animated: true})
+    }
+    this.props.dispatch(setReady(false))
     this.props.dispatch(setQuery(this.state.input))
     this.props.dispatch(showResults(true))
     this.props.dispatch(getResults(query))
@@ -53,7 +56,8 @@ class SearchField extends Component {
           onChangeText={this.handleTextChange}
           placeholder='Search Term'
           placeholderTextColor='#3E5982'/>
-        <TouchableOpacity style={{ width: buttonWidth, backgroundColor: '#e80d0d', padding: 10, alignItems: 'center', borderRadius: 2 }} onPress={this.submit}>
+        <TouchableOpacity style={{ width: buttonWidth, backgroundColor: '#e80d0d', padding: 10, alignItems: 'center', borderRadius: 2 }}
+          onPress={this.submit}>
           <Text style={{ color: 'white' }}>SUBMIT</Text>
         </TouchableOpacity>
       </KeyboardAvoidingView>
