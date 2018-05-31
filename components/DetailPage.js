@@ -11,24 +11,14 @@ class DetailPage extends Component {
   }
 
   componentDidMount() {
-    // const {height, width} = Dimensions.get('window')
-    // this.props.dispatch(setDimensions(width, height))
     this.updateDimensions()
     Dimensions.addEventListener("change", this.updateDimensions)
   }
 
-  // Important to stop updating state after unmount
+  // stop updating state after unmount
   componentWillUnmount() {
     Dimensions.removeEventListener("change", this.updateDimensions)
   }
-
-  // static navigationOptions = ({ navigation }) => {
-  //   const { entryId } = navigation.state.params
-  //   let strId = entryId.newTitle
-  //   return {
-  //     title: 'Apple'
-  //   }
-  // }
 
   static navigationOptions = ({ navigation }) => {
     const { title } = navigation.state.params
@@ -38,20 +28,6 @@ class DetailPage extends Component {
   };
 
   render() {
-    // FlatList used to save memory for recycled views
-    // <View style={{flex: 1, backgroundColor: '#23d4b1', height: 300, width: 300}}>
-    // </View>
-
-    // var {height, width} = Dimensions.get('window')
-    // console.log('Height: ', height)
-    // console.log('Width: ', width)
-
-    // style={{width: this.props.currentWidth,
-    //         height: this.props.currentHeight}}
-
-    // contentContainerStyle={{alignItems: 'center'}}
-
-
     // prevent image from being stretched wider than its actual width
     width = Math.min(this.props.screenWidth, this.props.currentWidth)
     // image margin offset
@@ -76,9 +52,6 @@ class DetailPage extends Component {
       </ScrollView>
     )
   }
-  // Tags: {splitTags(this.props.currentTags)}
-  // <View style={{padding: 10}}>
-  // </View>
 }
 
 function mapStateToProps(state) {

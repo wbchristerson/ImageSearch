@@ -34,7 +34,7 @@ class SearchField extends Component {
     return this.props.screenWidth <= this.props.screenHeight ? 1.0 : 0.8
   }
 
-  // if in portrait mode, make button width span 20% of screen width; if in
+  // if in portrait mode, make button width span 30% of screen width; if in
   // landscape mode, make button width span 15% of screen width
   buttonWidthRatio = () => {
     return this.props.screenWidth <= this.props.screenHeight ? 0.3 : 0.15
@@ -65,8 +65,6 @@ function mapStateToProps (state) {
   return {
     screenWidth: state.screenWidth,
     screenHeight: state.screenHeight,
-    // imageId: state.imageId
-
   }
 }
 

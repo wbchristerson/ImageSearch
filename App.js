@@ -21,15 +21,12 @@ const MainNavigator = StackNavigator({
   DetailPage: {
     screen: DetailPage,
     navigationOptions: {
-      // title: "Image Page",
       headerStyle: {
         backgroundColor: '#4bf442'
       }
     }
   }
 })
-// headerTintColor: 'red',
-// #f4f13d
 
 export default class App extends React.Component {
   render() {
@@ -40,9 +37,6 @@ export default class App extends React.Component {
         applyMiddleware(thunk)
       )
     )
-
-    // <Provider store={createStore(reducer)}>
-    // <SearchPage/>
     return (
       <Provider store={store}>
         <View style={styles.container}>
