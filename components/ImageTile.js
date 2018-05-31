@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { goToImage, setCurrentImage } from '../actions/index'
 import { Text, View, Image, TouchableOpacity, StyleSheet } from 'react-native'
 
+// the image units that appear within the result list
 class ImageTile extends Component {
   setChosenImage = () => {
     this.props.dispatch(setCurrentImage(this.props.user, this.props.tags,
@@ -14,7 +15,8 @@ class ImageTile extends Component {
     let query = this.props.currentQuery
     margin = Math.floor((this.props.screenWidth - this.props.width) / 2)
     return(
-      <View style={[ styles.imageView, {marginLeft: margin, marginRight: margin } ]}>
+      <View style={[ styles.imageView,
+        {marginLeft: margin, marginRight: margin } ]}>
         <TouchableOpacity onPress={() => {
           this.setChosenImage()
           return this.props.objRef.props.navigation.navigate(

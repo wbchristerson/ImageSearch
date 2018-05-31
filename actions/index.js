@@ -1,6 +1,5 @@
 export const GO_TO_IMAGE = 'GO_TO_IMAGE'
 export const GET_IMAGE_LIST = 'GET_IMAGE_LIST'
-export const SHOW_RESULTS = 'SHOW_RESULTS'
 export const SET_QUERY = 'SET_QUERY'
 export const SET_CURRENT_IMAGE = 'SET_CURRENT_IMAGE'
 export const SET_DIMENSIONS = 'SET_DIMENSIONS'
@@ -18,13 +17,6 @@ export function getImageList(data) {
   return {
     type: GET_IMAGE_LIST,
     data,
-  }
-}
-
-export function showResults(status) {
-  return {
-    type: SHOW_RESULTS,
-    status,
   }
 }
 

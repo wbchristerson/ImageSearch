@@ -48,7 +48,8 @@ class DetailPage extends Component {
       <ScrollView>
         <Animated.Image
           source={{uri: this.props.currentSource}}
-          style={[{width: width, height: scaleImageHeight(width, this.props.currentWidth, this.props.currentHeight),
+          style={[{width: width, height: scaleImageHeight(width,
+                    this.props.currentWidth, this.props.currentHeight),
                     marginLeft: offset, marginRight: offset}, {opacity}]}/>
         <View style={[styles.viewStyle, {marginLeft: textOffset, marginRight: textOffset}]}>
           <Text style={styles.textStyle}>

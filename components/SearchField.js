@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Text, TextInput, KeyboardAvoidingView, TouchableOpacity, ToastAndroid,
   StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
-import { goToImage, getResults, showResults, setQuery,
+import { goToImage, getResults, setQuery,
   setReady } from '../actions/index'
 
 class SearchField extends Component {
@@ -18,7 +18,9 @@ class SearchField extends Component {
       })
     } else {
       // warn user about search query length limit
-      ToastAndroid.show("Search Term's URL Encoding Must Not Exceed A Length Of 100", ToastAndroid.SHORT)
+      ToastAndroid.show(
+        "Search Term's URL Encoding Must Not Exceed A Length Of 100",
+        ToastAndroid.SHORT)
     }
   }
 
@@ -29,12 +31,11 @@ class SearchField extends Component {
     }
     this.props.dispatch(setReady(false))
     this.props.dispatch(setQuery(this.state.input))
-    this.props.dispatch(showResults(true))
     this.props.dispatch(getResults(query))
   }
 
-  // if in portrait mode, make selection field span most of screen; if in landscape
-  // mode, make selection field span 80% of screen width
+  // if in portrait mode, make selection field span most of screen; if in
+  // landscape mode, make selection field span 80% of screen width
   fieldWidthRatio = () => {
     return this.props.screenWidth <= this.props.screenHeight ? 1.0 : 0.8
   }
@@ -51,7 +52,8 @@ class SearchField extends Component {
     const fieldWidth = (componentWidth - 20) * this.fieldWidthRatio()
     const buttonWidth = (componentWidth - 20) * this.buttonWidthRatio()
     return(
-      <KeyboardAvoidingView behavior='padding' style={[ styles.fieldView, { maxWidth: componentWidth - 20 }]}>
+      <KeyboardAvoidingView behavior='padding' style={[ styles.fieldView,
+        { maxWidth: componentWidth - 20 }]}>
         <TextInput
           style={[styles.inputDimensions, { width: fieldWidth }]}
           value={input}
