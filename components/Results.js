@@ -22,12 +22,16 @@ class Results extends Component {
                 source={item.webformatURL}
                 sourceWidth={item.webformatWidth}
                 sourceHeight={item.webformatHeight}
-                width={Math.min(this.props.screenWidth,this.props.screenHeight) - 2 * sideMargin}
-                height={scaleLength(Math.min(this.props.screenWidth,this.props.screenHeight) - 2 * sideMargin, item.webformatWidth, item.webformatHeight)}
+                width={Math.min(this.props.screenWidth,
+                  this.props.screenHeight) - 2 * sideMargin}
+                height={scaleLength(Math.min(this.props.screenWidth,
+                  this.props.screenHeight) - 2 * sideMargin,
+                  item.webformatWidth, item.webformatHeight)}
                 objRef={this.props.objRef}
                 user={item.user}
                 tags={item.tags}
-                resolution={item.recordedWidth.toString() + ' x ' + item.recordedHeight.toString()}/>
+                resolution={item.recordedWidth.toString() + ' x ' +
+                  item.recordedHeight.toString()}/>
             )
           }
         }

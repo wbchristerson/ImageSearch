@@ -22,7 +22,7 @@ class SearchPage extends Component {
   componentWillUnmount() {
     Dimensions.removeEventListener("change", this.updateDimensions);
   }
-
+  
   render() {
     return (
       <View style={{flex: 1}}>
