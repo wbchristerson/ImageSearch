@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { View, Text, Image, ScrollView, Dimensions, Animated } from 'react-native'
+import { View, Text, Image, ScrollView, Dimensions, Animated, StyleSheet } from 'react-native'
 import { scaleImageHeight, splitTags } from '../utils/helper'
 import { setDimensions } from '../actions/index'
 
@@ -47,16 +47,16 @@ class DetailPage extends Component {
       <ScrollView>
         <Animated.Image
           source={{uri: this.props.currentSource}}
-          style={[{width: width, height: scaleImageHeight(width, this.props.currentWidth, this.props.currentHeight), marginLeft: offset, marginRight: offset},
-            { opacity }]}/>
-        <View style={{marginTop: 10, marginBottom: 10, marginLeft: textOffset, marginRight: textOffset}}>
-          <Text style={{flex: 1, fontSize: 24, alignItems: 'center', justifyContent: 'center'}}>
+          style={[{width: width, height: scaleImageHeight(width, this.props.currentWidth, this.props.currentHeight),
+                    marginLeft: offset, marginRight: offset}, { opacity }]}/>
+        <View style={[styles.viewStyle, {marginLeft: textOffset, marginRight: textOffset}]}>
+          <Text style={styles.textStyle}>
             User: {this.props.currentUser}
           </Text>
-          <Text style={{flex: 1, fontSize: 24, marginTop: 5, alignItems: 'center', justifyContent: 'center'}}>
+          <Text style={[styles.textStyle, { marginTop: 5}]}>
             Resolution: {this.props.currentResolution}
           </Text>
-          <Text style={{flex: 1, fontSize: 24, marginTop: 5, alignItems: 'center', justifyContent: 'center'}}>
+          <Text style={[styles.textStyle, { marginTop: 5}]}>
             Tags: {splitTags(this.props.currentTags)}
           </Text>
         </View>
@@ -64,6 +64,19 @@ class DetailPage extends Component {
     )
   }
 }
+
+const styles = StyleSheet.create({
+  viewStyle: {
+    marginTop: 10,
+    marginBottom: 10,
+  },
+  textStyle: {
+    flex: 1,
+    fontSize: 24,
+    alignItems: 'center',
+    justifyContent: 'center',
+  }
+})
 
 function mapStateToProps(state) {
   return {

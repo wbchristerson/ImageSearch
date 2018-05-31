@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { Text, TextInput, KeyboardAvoidingView, TouchableOpacity, ToastAndroid } from 'react-native'
+import { Text, TextInput, KeyboardAvoidingView, TouchableOpacity, ToastAndroid,
+  StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
 import { goToImage, getResults, showResults, setQuery, setReady } from '../actions'
 
@@ -49,14 +50,14 @@ class SearchField extends Component {
     const fieldWidth = (componentWidth - 20) * this.fieldWidthRatio()
     const buttonWidth = (componentWidth - 20) * this.buttonWidthRatio()
     return(
-      <KeyboardAvoidingView behavior='padding' style={{marginLeft: 10, marginRight: 10, marginTop: 10, marginBottom: 4, flexDirection: 'row', maxWidth: componentWidth - 20, flexWrap: 'wrap', justifyContent: 'center'}}>
+      <KeyboardAvoidingView behavior='padding' style={[ styles.fieldView, { maxWidth: componentWidth - 20 }]}>
         <TextInput
-          style={{paddingLeft: 10, paddingRight: 10, height: 40, fontSize: 24, width: fieldWidth}}
+          style={[styles.inputDimensions, { width: fieldWidth }]}
           value={input}
           onChangeText={this.handleTextChange}
           placeholder='Search Term'
           placeholderTextColor='#3E5982'/>
-        <TouchableOpacity style={{ width: buttonWidth, backgroundColor: '#e80d0d', padding: 10, alignItems: 'center', borderRadius: 2 }}
+        <TouchableOpacity style={[ styles.buttonInfo, { width: buttonWidth }]}
           onPress={this.submit}>
           <Text style={{ color: 'white' }}>SUBMIT</Text>
         </TouchableOpacity>
@@ -64,6 +65,30 @@ class SearchField extends Component {
     )
   }
 }
+
+const styles = StyleSheet.create({
+  fieldView: {
+    marginLeft: 10,
+    marginRight: 10,
+    marginTop: 10,
+    marginBottom: 4,
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+  },
+  inputDimensions: {
+    paddingLeft: 10,
+    paddingRight: 10,
+    height: 40,
+    fontSize: 24,
+  },
+  buttonInfo: {
+    backgroundColor: '#e80d0d',
+    padding: 10,
+    alignItems: 'center',
+    borderRadius: 2,
+  }
+})
 
 function mapStateToProps (state) {
   return {

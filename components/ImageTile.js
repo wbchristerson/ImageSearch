@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { goToImage, setCurrentImage } from '../actions/index'
-import { Text, View, Image, TouchableOpacity } from 'react-native'
+import { Text, View, Image, TouchableOpacity, StyleSheet } from 'react-native'
 
 class ImageTile extends Component {
   setChosenImage = () => {
@@ -14,7 +14,7 @@ class ImageTile extends Component {
     let query = this.props.currentQuery
     margin = Math.floor((this.props.screenWidth - this.props.width) / 2)
     return(
-      <View style={{marginLeft: margin, marginRight: margin, marginTop: 20, marginBottom: 20}}>
+      <View style={[ styles.imageView, {marginLeft: margin, marginRight: margin } ]}>
         <TouchableOpacity onPress={() => {
           this.setChosenImage()
           return this.props.objRef.props.navigation.navigate(
@@ -26,6 +26,13 @@ class ImageTile extends Component {
     )
   }
 }
+
+const styles = StyleSheet.create({
+  imageView: {
+    marginTop: 20,
+    marginBottom: 20,
+  },
+})
 
 function mapStateToProps (state) {
   return {

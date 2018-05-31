@@ -3,7 +3,8 @@ import SearchField from './SearchField'
 import ImageTile from './ImageTile'
 import ErrorMessage from './ErrorMessage'
 import { connect } from 'react-redux'
-import { View, FlatList, Dimensions, Image, Text, Linking, TouchableOpacity } from 'react-native'
+import { View, FlatList, Dimensions, Image, Text, Linking, TouchableOpacity,
+  StyleSheet } from 'react-native'
 import { scaleLength, binarySearch } from '../utils/helper'
 import { setDimensions } from '../actions/index'
 import { AppLoading } from 'expo'
@@ -24,7 +25,6 @@ class SearchPage extends Component {
     Dimensions.removeEventListener("change", this.updateDimensions);
   }
 
-  // {!this.props.ready && <AppLoading/>}
   render() {
     const sideMargin = 20
     return (
@@ -39,11 +39,11 @@ class SearchPage extends Component {
             renderItem={({item}) => {
               if (item.logo) {
                 return (
-                  <View style={{alignItems: 'center', marginTop: 3}}>
+                  <View style={styles.logoView}>
                     <Text>Images Provided By</Text>
                     <TouchableOpacity onPress={() => Linking.openURL('https://pixabay.com/')}>
                       <Image source={{uri: 'https://pixabay.com/static/img/logo.png'}}
-                        style={{width: 160, height: 31}} />
+                        style={styles.imageDimensions} />
                     </TouchableOpacity>
                   </View>
                 )
@@ -69,6 +69,17 @@ class SearchPage extends Component {
     )
   }
 }
+
+const styles = StyleSheet.create({
+  logoView: {
+    alignItems: 'center',
+    marginTop: 3,
+  },
+  imageDimensions: {
+    width: 160,
+    height: 31,
+  }
+})
 
 function mapStateToProps(state) {
   return {
