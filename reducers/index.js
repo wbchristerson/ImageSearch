@@ -18,6 +18,7 @@ const initialState = {
   currentY: 0, // screen location/position in search result flatlist
   portraitOffsets: [], // list of image offsets in portrait view
   landscapeOffsets: [], // list of image offsets in landscape view
+  hasMadeQuery: false, // whether the user has made at least one query (so showing flatlist)
 }
 
 function screenResult (state = initialState, action) {
@@ -52,6 +53,7 @@ function screenResult (state = initialState, action) {
       return {
         ...state,
         currentQuery: action.query,
+        hasMadeQuery: true,
       }
     case SET_CURRENT_IMAGE:
       return {

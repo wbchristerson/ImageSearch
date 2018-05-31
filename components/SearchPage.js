@@ -4,18 +4,44 @@ import ImageTile from './ImageTile'
 import ErrorMessage from './ErrorMessage'
 import { connect } from 'react-redux'
 import { View, FlatList, Dimensions, Image, Text, Linking, TouchableOpacity } from 'react-native'
-import { scaleLength } from '../utils/helper'
+import { scaleLength, binarySearch } from '../utils/helper'
 import { setDimensions, setY, setPortraitOffsets, setLandscapeOffsets } from '../actions/index'
 
 class SearchPage extends Component {
-  updateDimensions = () => {
-    var {height, width} = Dimensions.get('window')
+  initializeDimensions = () => {
+    const {height, width} = Dimensions.get('window')
     this.props.dispatch(setDimensions(width, height))
   }
 
+  updateDimensions = () => {
+    const {height, width} = Dimensions.get('window')
+    this.props.dispatch(setDimensions(width, height))
+    // if (height < width) {
+    //   this.refs.listRef.scrollToIndex({ index: 15, viewOffset: 0 })
+    // }
+    // this.resetListPosition(width, height)
+  }
+
+  // when rotating device, make sure that images seen before roughly match images
+  // seen after
+  resetListPosition = (width, height) => {
+    let screenIndex
+    let currentY = this.props.currentY
+    if (width <= height) {
+      screenIndex = binarySearch(currentY, this.props.portraitOffsets)
+    } else {
+      console.log('currentY: ', currentY)
+      console.log('landscapeOffsets: ', this.props.landscapeOffsets)
+      screenIndex = binarySearch(currentY, this.props.landscapeOffsets)
+      console.log('screenIndex: ', screenIndex)
+    }
+    if (screenIndex >= 1) {
+      this.refs.listRef.scrollToIndex({ index: 28, viewOffset: 0 })
+    }
+  }
+
   componentDidMount() {
-    // this.list.scrollToOffset({x: 0, y: 0, animated: true})
-    this.updateDimensions()
+    this.initializeDimensions()
     Dimensions.addEventListener("change", this.updateDimensions);
   }
 
@@ -25,10 +51,10 @@ class SearchPage extends Component {
   }
 
   // myMove() {
-  //   let yOffset = event.nativeEvent.contentOffset.y
-  //   let contentHeight = event.nativeEvent.contentSize.height
-  //   console.log('yOffset: ', yOffset)
-  //   console.log('contentHeight: ', contentHeight)
+  //   // let yOffset = event.nativeEvent.contentOffset.y
+  //   // let contentHeight = event.nativeEvent.contentSize.height
+  //   // console.log('yOffset: ', yOffset)
+  //   // console.log('contentHeight: ', contentHeight)
   //   this.refs.listRef.scrollToIndex({ index: 15, viewOffset: 0 })
   // }
 
@@ -37,9 +63,6 @@ class SearchPage extends Component {
     console.log(event.nativeEvent.contentOffset.y);
   }
 
-  // <TouchableOpacity onPress={() => this.myMove()}>
-  //   <Text style={{fontSize: 24}}>Hello</Text>
-  // </TouchableOpacity>
 
 
   // // create a list of offsets of images from the beginning of the flatlist
@@ -68,25 +91,23 @@ class SearchPage extends Component {
   //   this.props.dispatch(setLandscapeOffsets(landscapeArr))
   // }
 
+  // <TouchableOpacity onPress={() => this.myMove()}>
+  //   <Text style={{fontSize: 24}}>Hello</Text>
+  // </TouchableOpacity>
   render() {
     // set wider left and right margins when in landscape mode
-    const sideMargin = (this.props.screenHeight >= this.props.screenWidth) ? 20 : 40
-    let level = 0
+    // const sideMargin = (this.props.screenHeight >= this.props.screenWidth) ? 20 : 40
+    const sideMargin = 20
+    // let level = 0
     return (
       <View style={{flex: 1}}>
         <SearchField listRef={this.refs.listRef}/>
         {this.props.querySuccess &&
           <FlatList
+            // getItemLayout={(data, index) => (
+            //   {length: 80, offset: 80 * index, index}
+            // )}
             onScroll={this.handleScroll}
-            // onViewableItemsChanged={({ viewableItems, changed }) => {
-            //   console.log("Visible items are", viewableItems);
-            //   console.log("Changed in this iteration", changed);
-            // }}
-            // viewabilityConfig={{
-            //   itemVisiblePercentThreshold: 50
-            // }}
-
-            // onViewableItemsChanged={this.onItemsChanges}
             ref='listRef' // for setting list to top on new queries
             data={this.props.resultList}
             keyExtractor={() => Math.random().toString(36).substr(2, 9)}
@@ -107,8 +128,8 @@ class SearchPage extends Component {
                     source={item.webformatURL}
                     sourceWidth={item.webformatWidth}
                     sourceHeight={item.webformatHeight}
-                    width={this.props.screenWidth}
-                    height={scaleLength(this.props.screenWidth - 2 * sideMargin, item.webformatWidth, item.webformatHeight)}
+                    width={Math.min(this.props.screenWidth,this.props.screenHeight) - 2 * sideMargin}
+                    height={scaleLength(Math.min(this.props.screenWidth,this.props.screenHeight) - 2 * sideMargin, item.webformatWidth, item.webformatHeight)}
                     objRef={this}
                     user={item.user}
                     tags={item.tags}
@@ -133,6 +154,9 @@ function mapStateToProps(state) {
     screenWidth: state.screenWidth,
     screenHeight: state.screenHeight,
     querySuccess: state.querySuccess,
+    portraitOffsets: state.portraitOffsets,
+    landscapeOffsets: state.landscapeOffsets,
+    currentY: state.currentY,
   }
 }
 

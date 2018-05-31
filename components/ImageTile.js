@@ -11,9 +11,10 @@ class ImageTile extends Component {
   }
 
   render() {
-    query = this.props.currentQuery
+    let query = this.props.currentQuery
+    margin = Math.floor((this.props.screenWidth - this.props.width) / 2)
     return(
-      <View style={{marginLeft: this.props.sideMargin, marginRight: this.props.sideMargin, marginTop: 20, marginBottom: 20}}>
+      <View style={{marginLeft: margin, marginRight: margin, marginTop: 20, marginBottom: 20}}>
         <TouchableOpacity onPress={() => {
           this.setChosenImage()
           return this.props.objRef.props.navigation.navigate(
@@ -29,6 +30,7 @@ class ImageTile extends Component {
 function mapStateToProps (state) {
   return {
     currentQuery: state.currentQuery,
+    screenWidth: state.screenWidth,
   }
 }
 
