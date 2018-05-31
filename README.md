@@ -35,6 +35,10 @@ The main screen includes a search field from which to query images. At most 100 
 
 Clicking on any of the resulting images sends the user to an individual image page, which shows a faded-in larger view of the selected image together with data such as the username of the Pixabay user who took the photograph, the original resolution of the image, and the associated image tags.
 
+<p align="center">
+  <img src="images/Detail-Page.png" alt="Detail Screen">
+</p>
+
 A navigation arrow sends the user back to the original list page at the same position. Queries are restricted to those with URL-encodings not exceeding a length of 100.
 
 Ignore warnings from React Native about deprecated component lifecycle functions.
