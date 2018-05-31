@@ -10,7 +10,7 @@ class Results extends Component {
     const sideMargin = 20
     return (
       <FlatList
-        ref='listRef' // for setting list to top on new queries
+        ref={(ref) => { this.listRef = ref; }}
         data={this.props.resultList}
         keyExtractor={() => Math.random().toString(36).substr(2, 9)}
         renderItem={({item}) => {
