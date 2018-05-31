@@ -18,7 +18,7 @@ In all cases, having downloaded the files:
 
 * To install all dependencies from the command line, run the following command in the terminal within the project repository:
     - `npm install`
-* In another terminal window, run the following command to start the project, also in the project repository:
+* Run the following command, also in the project repository:
     - `npm start`
 
 The terminal will then provide you with several options. If you have the application [Expo](https://expo.io/) on your device, then you can scan the accompanying QR code that appears, which will then give you the option to run the application on mobile (note: the scan is most easily recognized on terminals with a black background and a gray or white foreground).
