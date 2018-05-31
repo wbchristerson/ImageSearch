@@ -1,16 +1,25 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { View, Text, Image, ScrollView, Dimensions } from 'react-native'
+import { View, Text, Image, ScrollView, Dimensions, Animated } from 'react-native'
 import { scaleImageHeight, splitTags } from '../utils/helper'
 import { setDimensions } from '../actions/index'
 
 class DetailPage extends Component {
+  // for animation properties, there is no need to record information in the
+  // redux store, so it is kept here in local state
+  state = {
+    opacity: new Animated.Value(0),
+  }
+
   updateDimensions = () => {
     const { width, height } = Dimensions.get('window')
     this.props.dispatch(setDimensions(width, height))
   }
 
   componentDidMount() {
+    const { opacity } = this.state
+    Animated.timing(opacity, { toValue: 1, duration: 1000 })
+      .start()
     this.updateDimensions()
     Dimensions.addEventListener("change", this.updateDimensions)
   }
@@ -28,6 +37,7 @@ class DetailPage extends Component {
   };
 
   render() {
+    const { opacity } = this.state
     // prevent image from being stretched wider than its actual width
     width = Math.min(this.props.screenWidth, this.props.currentWidth)
     // image margin offset
@@ -35,9 +45,10 @@ class DetailPage extends Component {
     textOffset = Math.max(offset, 20)
     return (
       <ScrollView>
-        <Image
+        <Animated.Image
           source={{uri: this.props.currentSource}}
-          style={{width: width, height: scaleImageHeight(width, this.props.currentWidth, this.props.currentHeight), marginLeft: offset, marginRight: offset}}/>
+          style={[{width: width, height: scaleImageHeight(width, this.props.currentWidth, this.props.currentHeight), marginLeft: offset, marginRight: offset},
+            { opacity }]}/>
         <View style={{marginTop: 10, marginBottom: 10, marginLeft: textOffset, marginRight: textOffset}}>
           <Text style={{flex: 1, fontSize: 24, alignItems: 'center', justifyContent: 'center'}}>
             User: {this.props.currentUser}
