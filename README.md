@@ -1,5 +1,9 @@
 # Image Search
 
+<p align="center">
+  <img src="images/Spring-Search.png" alt="Introductory screen showing results of search for 'Spring'">
+</p>
+
 This project is a basic image search mobile application meant for Android (I have tested it only on Android, though as far as I know, all features should also be functional on iOS devices). I created the application using `react-native` along with `redux`. (This project was bootstrapped with [Create React Native App](https://github.com/react-community/create-react-native-app).) All images were obtained from the free image sharing website [Pixabay](https://pixabay.com/) using its [API](https://pixabay.com/api/docs/). A link to the website is also provided in the application at the beginning of result displays.
 
 ## Downloading The Project
