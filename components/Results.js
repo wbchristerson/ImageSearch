@@ -24,9 +24,7 @@ class Results extends Component {
                 sourceHeight={item.webformatHeight}
                 width={Math.min(this.props.screenWidth,
                   this.props.screenHeight) - 2 * sideMargin}
-                height={scaleLength(Math.min(this.props.screenWidth,
-                  this.props.screenHeight) - 2 * sideMargin,
-                  item.webformatWidth, item.webformatHeight)}
+                height={100}
                 objRef={this.props.objRef}
                 user={item.user}
                 tags={item.tags}
@@ -39,6 +37,9 @@ class Results extends Component {
     )
   }
 }
+// height={scaleLength(Math.min(this.props.screenWidth,
+//   this.props.screenHeight) - 2 * sideMargin,
+//   item.webformatWidth, item.webformatHeight)}
 
 function mapStateToProps(state) {
   return {
